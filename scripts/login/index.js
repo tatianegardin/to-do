@@ -8,12 +8,15 @@ let campoSenhaLoginNormalizado
 
 //variável de controle da validação
 let emailEValido = false;
+let senhaEValido = false;
 
 //Definindo objeto
 const usuarioObjeto = {
     email: "",
     senha: "",
 }
+
+validacaoTelaDeLogin()
 
 botaoAcessar.addEventListener('click', function(evento){
 
@@ -43,34 +46,48 @@ campoEmailLogin.addEventListener('blur', function() {
 
     //Se o campo estiver com algum valor correto
     if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(campoEmailLogin.value)){
-        inputEmailValidacao.innerText = ""
-        campoEmailLogin.style.border = ``
+        validacaoCampoOk(campoEmailLogin, inputEmailValidacao)
         emailEValido = true;
         
     }else if(campoEmailLogin.value == "") {
         inputEmailValidacao.innerText = "Campo obrigatório";
-        inputEmailValidacao.style.color = "#EE1729EC"
-        inputEmailValidacao.style.fontSize = "8pt"
-        inputEmailValidacao.style.fontWeight = "bold"
-        campoEmailLogin.style.border = `1px solid #EE1729EC`
-        emailEValido = false;
+        validacaoCampoAlerta(campoEmailLogin, inputEmailValidacao)
+        emailEValido = false
 
     }else {
         inputEmailValidacao.innerText = "Email inválido";
-        inputEmailValidacao.style.color = "#EE1729EC"
-        inputEmailValidacao.style.fontSize = "8pt"
-        inputEmailValidacao.style.fontWeight = "bold"
-        campoEmailLogin.style.border = `1px solid #EE1729EC`
-        emailEValido = false;
+        validacaoCampoAlerta(campoEmailLogin, inputEmailValidacao)
+        emailEValido = false
     }
 
     //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
     validacaoTelaDeLogin();
 });
 
+campoSenhaLogin.addEventListener('blur', () =>{
+    let inputSenhaValidacao = document.getElementById('inputSenhaValidacao')
+
+    if(/(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()-+]).{8,}$/.test(campoSenhaLogin.value)){
+        validacaoCampoOk(campoSenhaLogin, inputSenhaValidacao)
+        senhaEValido = true;
+        
+    }else if(campoSenhaLogin.value == "") {
+        inputSenhaValidacao.innerText = "Campo obrigatório";
+        validacaoCampoAlerta(campoSenhaLogin, inputSenhaValidacao)
+        senhaEValido = false
+
+    }else {
+        inputSenhaValidacao.innerText = "A senha deve conter pelo menos : \n1 letra maiúscula \n1 letra minúscula \n1 número \n1 caracter especial\n no mínimo 8 caracteres";
+        validacaoCampoAlerta(campoSenhaLogin, inputSenhaValidacao)
+        senhaEValido = false
+    }
+
+    validacaoTelaDeLogin()
+})
+
 
 function validacaoTelaDeLogin () {
-    if (emailEValido) {
+    if (emailEValido && senhaEValido) {
         botaoAcessar.removeAttribute('disabled')
         botaoAcessar.innerText = "Acessar";
         return true;
@@ -80,4 +97,5 @@ function validacaoTelaDeLogin () {
         return false;
     }
 }
+
 
