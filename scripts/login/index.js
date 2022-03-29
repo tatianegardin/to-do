@@ -41,15 +41,22 @@ campoEmailLogin.addEventListener('blur', function() {
     //Captura o elemento "small"
     let inputEmailValidacao = document.getElementById('inputEmailValidacao');
 
-    //Se o campo estiver com algum valor...
-    if (campoEmailLogin.value != "") {
+    //Se o campo estiver com algum valor correto
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(campoEmailLogin.value)){
         inputEmailValidacao.innerText = ""
         campoEmailLogin.style.border = ``
         emailEValido = true;
-
-    //Se o campo estiver sem nenhum valor...
-    } else {
+        
+    }else if(campoEmailLogin.value == "") {
         inputEmailValidacao.innerText = "Campo obrigatório";
+        inputEmailValidacao.style.color = "#EE1729EC"
+        inputEmailValidacao.style.fontSize = "8pt"
+        inputEmailValidacao.style.fontWeight = "bold"
+        campoEmailLogin.style.border = `1px solid #EE1729EC`
+        emailEValido = false;
+
+    }else {
+        inputEmailValidacao.innerText = "Email inválido";
         inputEmailValidacao.style.color = "#EE1729EC"
         inputEmailValidacao.style.fontSize = "8pt"
         inputEmailValidacao.style.fontWeight = "bold"
@@ -60,6 +67,7 @@ campoEmailLogin.addEventListener('blur', function() {
     //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
     validacaoTelaDeLogin();
 });
+
 
 function validacaoTelaDeLogin () {
     if (emailEValido) {
