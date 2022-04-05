@@ -1,3 +1,4 @@
+
 //capturando input digitado pelo usuário
 let campoNome = pegarElementoID('campoNome') 
 let campoApelido = pegarElementoID('campoApelido')
@@ -26,14 +27,16 @@ let campoRepetirSenhaNormalizado
 
 // criando objeto
 let novoUsuario = {
-        nome: '',
-        apelido: '',
+        firstName: '',
+        lastName: '',
         email: '',
-        senha: '',
+        password: '',
 
     }
 
 btnCriarConta.addEventListener('click', evento =>{
+
+    if(liberaBotao())
     //retirando espaços dos campos
     campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value)
     campoApelidoNormalizado = retiraEspacosDeUmValor(campoApelido.value)
@@ -47,54 +50,73 @@ btnCriarConta.addEventListener('click', evento =>{
     campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value)
     
     // atribuindo valores ao objeto 
-    novoUsuario.nome = campoNomeNormalizado
-    novoUsuario.apelido = campoApelidoNormalizado
+    novoUsuario.firstName = campoNomeNormalizado
+    novoUsuario.lastName = campoApelidoNormalizado
     novoUsuario.email = campoEmailNormalizado
-    novoUsuario.senha = campoSenhaNormalizado
+    novoUsuario.password = campoSenhaNormalizado
 
-    evento.preventDefault()
+
 })
 
+
+//variaveis para liberção do botão
+let validaNome = false
+let validaApelido = false
+let validaEmail = false
+let validaSenha = false
+let validaRepetirSenha = false
+
+// blur dos inputs
 
 campoNome.addEventListener('blur', () => {
     if(campoNome.value == ''){
         inputNomeValidacao.innerText = 'Campo obrigatório'
         validacaoCampoAlerta(campoNome, inputNomeValidacao)
+        validaNome = false
     }else{
         validacaoCampoOk(campoNome, inputNomeValidacao)
+        validaNome = true
     }
+    liberaBotao()
 })
 
 campoApelido.addEventListener('blur', ()=>{
     if(campoApelido.value == ''){
         inputApelidoValidacao.innerText = 'Campo obrigatório'
         validacaoCampoAlerta(campoApelido, inputApelidoValidacao)
+        validaApelido = false
     }else{
         validacaoCampoOk(campoApelido, inputApelidoValidacao)
+        validaApelido = true
     }
+    liberaBotao()
 })
 
 campoEmail.addEventListener('blur', () =>{
     if((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(campoEmail.value))){
         validacaoCampoOk(campoEmail, inputEmailValidacao)
+        validaEmail = true
     }else if(campoEmail.value == ''){
         inputEmailValidacao.innerText = 'Campo obrigatório'
         validacaoCampoAlerta(campoEmail, inputEmailValidacao)
+        validaEmail = false
     }else{
         inputEmailValidacao.innerText = 'Email inválido'
         validacaoCampoAlerta(campoEmail, inputEmailValidacao)
+        validaEmail = false
     }
+    liberaBotao()
 })
 
 campoSenha.addEventListener('blur', () =>{
     if((/(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()-+]).{8,}$/.test(campoSenha.value))){
-        validacaoCampoOk(campoSenha, inputSenhaValidacao)
+       validacaoCampoOk(campoSenha, inputSenhaValidacao)
         validaSenha = true
     }else if(campoSenha.value == ''){
         inputSenhaValidacao.innerText = 'Campo obrigatório'
         validacaoCampoAlerta(campoSenha, inputSenhaValidacao)
         validaSenha = false
-    }else{
+    }else {
         inputSenhaValidacao.innerText = 'A senha deve conter pelo menos : \n1 letra maiúscula \n1 letra minúscula \n1 número \n1 caracter especial\n no mínimo 8 caracteres'
         validacaoCampoAlerta(campoSenha, inputSenhaValidacao)
         validaSenha = false

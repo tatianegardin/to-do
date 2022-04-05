@@ -13,7 +13,7 @@ let senhaEValido = false;
 //Definindo objeto
 const usuarioObjeto = {
     email: "",
-    senha: "",
+    password: "",
 }
 
 validacaoTelaDeLogin()
@@ -21,6 +21,7 @@ validacaoTelaDeLogin()
 botaoAcessar.addEventListener('click', function(evento){
 
     if (validacaoTelaDeLogin()) {
+        evento.preventDefault()
         
         //Normalizando as informações
         campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
@@ -29,9 +30,27 @@ botaoAcessar.addEventListener('click', function(evento){
 
         //Populando o objeto com as informações normalizadas
         usuarioObjeto.email = campoEmailLoginNormalizado;
-        usuarioObjeto.senha = campoSenhaLoginNormalizado;
+        usuarioObjeto.password = campoSenhaLoginNormalizado;
 
         console.log(usuarioObjeto);
+
+        let usuarioObjetoJson = JSON.stringify(usuarioObjeto);
+
+        let endPoint = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: usuarioObjetoJson
+        }
+
+        let urlEndPoint = "https://ctd-todo-api.herokuapp.com/v1/users/login"
+
+        fetch(urlEndPoint, endPoint)
+        .then(response => response.json())
+        .then(data => console.log(data))
+
+
     } else {
         alert("Ambos os campos devem ser informados")
         evento.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
@@ -66,20 +85,15 @@ campoEmailLogin.addEventListener('blur', function() {
 
 campoSenhaLogin.addEventListener('blur', () =>{
     let inputSenhaValidacao = document.getElementById('inputSenhaValidacao')
-
-    if(/(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()-+]).{8,}$/.test(campoSenhaLogin.value)){
-        validacaoCampoOk(campoSenhaLogin, inputSenhaValidacao)
-        senhaEValido = true;
-        
-    }else if(campoSenhaLogin.value == "") {
+      
+    if(campoSenhaLogin.value == "") {
         inputSenhaValidacao.innerText = "Campo obrigatório";
         validacaoCampoAlerta(campoSenhaLogin, inputSenhaValidacao)
         senhaEValido = false
 
     }else {
-        inputSenhaValidacao.innerText = "A senha deve conter pelo menos : \n1 letra maiúscula \n1 letra minúscula \n1 número \n1 caracter especial\n no mínimo 8 caracteres";
-        validacaoCampoAlerta(campoSenhaLogin, inputSenhaValidacao)
-        senhaEValido = false
+        validacaoCampoOk(campoSenhaLogin, inputSenhaValidacao)
+        senhaEValido = true;
     }
 
     validacaoTelaDeLogin()
