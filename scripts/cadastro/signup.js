@@ -86,5 +86,61 @@ campoEmail.addEventListener('blur', () =>{
     }
 })
 
+campoSenha.addEventListener('blur', () =>{
+    if((/(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!@#$%^&*()-+]).{8,}$/.test(campoSenha.value))){
+        validacaoCampoOk(campoSenha, inputSenhaValidacao)
+        validaSenha = true
+    }else if(campoSenha.value == ''){
+        inputSenhaValidacao.innerText = 'Campo obrigatório'
+        validacaoCampoAlerta(campoSenha, inputSenhaValidacao)
+        validaSenha = false
+    }else{
+        inputSenhaValidacao.innerText = 'A senha deve conter pelo menos : \n1 letra maiúscula \n1 letra minúscula \n1 número \n1 caracter especial\n no mínimo 8 caracteres'
+        validacaoCampoAlerta(campoSenha, inputSenhaValidacao)
+        validaSenha = false
+    }
+    liberaBotao()
+})
+
+
+campoRepetirSenha.addEventListener('blur', () =>{
+    if(campoRepetirSenha.value == campoSenha.value){
+        validacaoCampoOk(campoRepetirSenha, inputRepetirSenhaValidacao)
+        validaRepetirSenha = true
+    }else if(campoRepetirSenha.value == ''){
+        inputRepetirSenhaValidacao.innerText = 'Campo obrigatório'
+        validacaoCampoAlerta(campoRepetirSenha, inputRepetirSenhaValidacao)
+        validaRepetirSenha = false
+    }else {
+        inputRepetirSenhaValidacao.innerText = 'As senhas não são iguais'
+        validacaoCampoAlerta(campoRepetirSenha, inputRepetirSenhaValidacao)
+        validaRepetirSenha = false
+    }
+    liberaBotao()
+})
+
+
+function liberaBotao(){
+    if(validaNome && validaApelido && validaEmail && validaSenha && validaRepetirSenha){
+        btnCriarConta.removeAttribute('disabled')
+        btnCriarConta.innerText = 'Criar conta'
+        return true
+    }else{
+        btnCriarConta.setAttribute('disabled', true)
+        btnCriarConta.innerText = 'bloqueado'
+        return false
+    }
+}
+
+function limpaInput(){
+    campoNome.value = ''
+    campoApelido.value = ''
+    campoEmail.value = ''
+    campoSenha.value = ''
+    campoRepetirSenha.value = ''
+}
+
+liberaBotao()
+limpaInput()
 
 
