@@ -32,7 +32,7 @@ botaoAcessar.addEventListener('click', function(evento){
         usuarioObjeto.email = campoEmailLoginNormalizado;
         usuarioObjeto.password = campoSenhaLoginNormalizado;
 
-        console.log(usuarioObjeto);
+
 
         let usuarioObjetoJson = JSON.stringify(usuarioObjeto);
 
@@ -48,7 +48,7 @@ botaoAcessar.addEventListener('click', function(evento){
 
         fetch(urlEndPoint, endPoint)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => console.log(data.jwt))
 
 
     } else {

@@ -35,7 +35,7 @@ let novoUsuario = {
     }
 
 btnCriarConta.addEventListener('click', evento =>{
-
+    evento.preventDefault()
     if(liberaBotao())
     //retirando espaços dos campos
     campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value)
@@ -54,6 +54,36 @@ btnCriarConta.addEventListener('click', evento =>{
     novoUsuario.lastName = campoApelidoNormalizado
     novoUsuario.email = campoEmailNormalizado
     novoUsuario.password = campoSenhaNormalizado
+
+    let objetoJson = JSON.stringify(novoUsuario)
+
+    console.log(objetoJson)
+
+    let endPoint = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: objetoJson
+    }
+    
+    let urlEndPoint = "https://ctd-todo-api.herokuapp.com/v1/users"
+
+    fetch(urlEndPoint, endPoint)
+    .then(response => {
+        if(response.status == 201){
+            return response.json()
+        }else{
+            throw response
+        }
+    })
+    .then()
+    .catch(error => alert(error))
+
+     
+    function loginOk(jwtRecebido){
+        sessionStorage.setItem('jwt', jwtRecebido)
+    }
 
 
 })
