@@ -47,13 +47,29 @@ botaoAcessar.addEventListener('click', function(evento){
         let urlEndPoint = "https://ctd-todo-api.herokuapp.com/v1/users/login"
 
         fetch(urlEndPoint, endPoint)
-        .then(response => response.json())
-        .then(data => console.log(data.jwt))
+        .then(response => {
+            if(response.status == 201){
+                return response.json()
+            }else{
+                throw response
+            }
+        })
+        .then(data => data.jwt)
+        .then(data => {
+            loginOk(data)
+        })
+        .catch(error => alert(error))
+
 
 
     } else {
         alert("Ambos os campos devem ser informados")
         evento.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
+    }
+
+    function loginOk(jwtRecebido){
+        sessionStorage.setItem('jwt', jwtRecebido)
+        window.location.href = 'tarefas.html'
     }
 
 });

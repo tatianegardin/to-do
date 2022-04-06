@@ -70,23 +70,17 @@ btnCriarConta.addEventListener('click', evento =>{
     let urlEndPoint = "https://ctd-todo-api.herokuapp.com/v1/users"
 
     fetch(urlEndPoint, endPoint)
-    .then(response => {
-        if(response.status == 201){
-            return response.json()
-        }else{
-            throw response
-        }
-    })
-    .then()
+
+    .then(data => data.jwt)
+
     .catch(error => alert(error))
 
      
-    function loginOk(jwtRecebido){
-        sessionStorage.setItem('jwt', jwtRecebido)
-    }
+
 
 
 })
+
 
 
 //variaveis para liberção do botão
