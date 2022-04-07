@@ -5,6 +5,7 @@ let campoApelido = pegarElementoID('campoApelido')
 let campoEmail = pegarElementoID('campoEmail')
 let campoSenha = pegarElementoID('campoSenha')
 let campoRepetirSenha = pegarElementoID('campoRepetirSenha')
+let exibirErro = pegarElementoID('exibirErro')
 
 
 // tag small para validação dos campos não preenchidos 
@@ -71,9 +72,30 @@ btnCriarConta.addEventListener('click', evento =>{
 
     fetch(urlEndPoint, endPoint)
 
-    .then(data => data.jwt)
+    .then(response => {
+        if(response.status == 201 ){
+            console.log(response)
+            return response.json()
 
-    .catch(error => alert(error))
+        }else{
+            console.log(response)
+            throw response.status
+        }
+    })
+    .then(data => {
+        window.location = 'index.html'
+        return data.jwt
+    })
+
+    .catch(error => {
+        if(error == 400){
+            exibirErro.innerText = "Usuário já registrado"
+            exibirErroApi(exibirErro)
+        }else{
+            exibirErro.innerText = "Tentar novamente mais tarde"
+            exibirErroApi(exibirErro)
+        }
+    })
 
      
 

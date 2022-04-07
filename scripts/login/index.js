@@ -2,6 +2,7 @@
 let campoEmailLogin = document.getElementById('inputEmail');
 let campoSenhaLogin = document.getElementById('inputPassword');
 let botaoAcessar = document.getElementById('botaoAcessar');
+let exibeErro = pegarElementoID('exibeErro')
 
 let campoEmailLoginNormalizado;
 let campoSenhaLoginNormalizado
@@ -51,20 +52,23 @@ botaoAcessar.addEventListener('click', function(evento){
             if(response.status == 201){
                 return response.json()
             }else{
-                throw response
+                throw response.status
             }
         })
         .then(data => data.jwt)
         .then(data => {
             loginOk(data)
         })
-        .catch(error => alert(error))
+        .catch(error => {
+            if(error == 404 || error == 400){
+                exibeErro.innerText = "Usuário ou senha incorreto."
+                exibirErroApi(exibeErro)
+            }else{
+                exibeErro.innerText = "Tente novamente mais tarde."
+                exibirErroApi(exibeErro)
+            }
 
-
-
-    } else {
-        alert("Ambos os campos devem ser informados")
-        evento.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
+        })
     }
 
     function loginOk(jwtRecebido){
