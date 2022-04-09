@@ -170,6 +170,12 @@ campoSenha.addEventListener('blur', () =>{
     liberaBotao()
 })
 
+// Mostrar a senha no cadastro
+
+let img = document.getElementById('olho');
+img.addEventListener('click', function () {
+    campoSenha.type = campoSenha.type == 'text' ? 'password' : 'text';
+  });
 
 campoRepetirSenha.addEventListener('blur', () =>{
     if(campoRepetirSenha.value == campoSenha.value){
@@ -187,6 +193,11 @@ campoRepetirSenha.addEventListener('blur', () =>{
     liberaBotao()
 })
 
+// Mostrar o repetir senha no cadastro
+
+img.addEventListener('click', function () {
+    campoRepetirSenha.type = campoRepetirSenha.type == 'text' ? 'password' : 'text';
+});
 
 function liberaBotao(){
     if(validaNome && validaApelido && validaEmail && validaSenha && validaRepetirSenha){

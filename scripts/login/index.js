@@ -119,6 +119,11 @@ campoSenhaLogin.addEventListener('blur', () =>{
     validacaoTelaDeLogin()
 })
 
+// Mostrar senha login
+let img = document.getElementById('olho');
+img.addEventListener('click', function () {
+    campoSenhaLogin.type = campoSenhaLogin.type == 'text' ? 'password' : 'text';
+  });
 
 function validacaoTelaDeLogin () {
     if (emailEValido && senhaEValido) {
