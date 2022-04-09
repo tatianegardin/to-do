@@ -58,6 +58,12 @@ label {
   font-size: .8em;
 }
 
+#olho {
+  cursor: pointer;
+  height: 1.3em;
+  float: right;
+}
+
 button {
   padding: .5em 3em;
   background-color: var(--primary);
