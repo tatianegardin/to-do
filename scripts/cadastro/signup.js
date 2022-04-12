@@ -172,10 +172,9 @@ campoSenha.addEventListener('blur', () =>{
 
 // Mostrar a senha no cadastro
 
-let img = document.getElementById('olho');
-img.addEventListener('click', function () {
-    campoSenha.type = campoSenha.type == 'text' ? 'password' : 'text';
-  });
+let img = pegarElementoID('olho');
+mostrarSenha(img, campoSenha)
+
 
 campoRepetirSenha.addEventListener('blur', () =>{
     if(campoRepetirSenha.value == campoSenha.value){

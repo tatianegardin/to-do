@@ -120,10 +120,10 @@ campoSenhaLogin.addEventListener('blur', () =>{
 })
 
 // Mostrar senha login
-let img = document.getElementById('olho');
-img.addEventListener('click', function () {
-    campoSenhaLogin.type = campoSenhaLogin.type == 'text' ? 'password' : 'text';
-  });
+let img = pegarElementoID('olho');
+
+mostrarSenha(img, campoSenhaLogin)
+
 
 function validacaoTelaDeLogin () {
     if (emailEValido && senhaEValido) {
