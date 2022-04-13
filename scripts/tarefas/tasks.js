@@ -41,14 +41,14 @@ function pegarUsuario(valor) {
 const criarTarefa = (inputTarefa = novaTarefa) => {
 
     let tarefa = {
-        description: inputTarefa.innerHTML,
+        description: inputTarefa.innerText,
         completed: false
     };
 
     let urlCriarTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
     let novaTarefaJSON = JSON.stringify(tarefa);
 
-    console.log(novaTarefaJSON)
+    console.log(novaTarefaJSON);
 
     let endPoint = {
         method: 'POST',
@@ -58,6 +58,27 @@ const criarTarefa = (inputTarefa = novaTarefa) => {
         body: novaTarefaJSON
     }
 
-    fetch(urlCriarTarefa, endPoint)
-        .then()
+    fetch(urlCriarTarefa, endPoint).then(response => {
+        if (response.status == 201) {
+            console.log(response)
+            return response.json()
+
+        } else {
+            console.log(response)
+            throw response.status
+        }
+
+    }).then(data => {
+        window.location = 'index.html'
+        return data.jwt
+
+    }).catch(error => {
+        if (error == 400) {
+            exibirErro.innerText = "Tarefa já existente"
+            exibirErroApi(exibirErro)
+        } else {
+            exibirErro.innerText = "Tentar novamente mais tarde"
+            exibirErroApi(exibirErro)
+        }
+    })
 }
