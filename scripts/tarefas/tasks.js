@@ -2,6 +2,7 @@
 let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = document.getElementById('novaTarefa');
+let btnTarefa = document.querySelector('.nova-tarefa button')
 
 onload = function () {
     if (!token) {
@@ -41,7 +42,7 @@ function pegarUsuario(valor) {
 const criarTarefa = (inputTarefa = novaTarefa) => {
 
     let tarefa = {
-        description: inputTarefa.innerHTML,
+        description: inputTarefa.value,
         completed: false
     };
 
@@ -53,11 +54,20 @@ const criarTarefa = (inputTarefa = novaTarefa) => {
     let endPoint = {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'authorization': token
         },
         body: novaTarefaJSON
     }
 
     fetch(urlCriarTarefa, endPoint)
-        .then()
+        .then(response => response.json())
+        .then(data=>console.log(data))
 }
+
+//evento para criar a nova tarefa 
+
+btnTarefa.addEventListener('click', event=>{
+    event.preventDefault()
+    criarTarefa()
+})
