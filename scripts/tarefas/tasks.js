@@ -2,7 +2,8 @@
 let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = document.getElementById('novaTarefa');
-let btnTarefa = document.querySelector('.nova-tarefa button')
+let btnTarefa = document.querySelector('.nova-tarefa button');
+let exibeErro = document.getElementByI('exibeErro');
 
 onload = function () {
     if (!token) {
