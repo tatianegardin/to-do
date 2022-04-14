@@ -16,7 +16,7 @@ onload = function () {
 
 //função para pegar o nome e sobrenome do usuário a partir do token
 function pegarUsuario(valor) {
-    let endPoin = {
+    let endPoint = {
         method: 'GET',
         headers: {
             authorization: valor
@@ -25,7 +25,7 @@ function pegarUsuario(valor) {
 
     let url = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe'
 
-    fetch(url, endPoin)
+    fetch(url, endPoint)
         .then(response => response.json())
         .then(data => {
             nomeUsuario.innerHTML = `${data.firstName} ${data.lastName}`
@@ -99,6 +99,6 @@ const criarNovaTarefa = (entradaTarefa) => {
 
 btnTarefa.addEventListener('click', event => {
     event.preventDefault()
-    let textoNovaTarefa = novaTarefa.innerHTML; // CORRIGIR A CAPTURA DO TEXTO DA TAREFA
+    let textoNovaTarefa = novaTarefa.value; // CORRIGIR A CAPTURA DO TEXTO DA TAREFA
     criarNovaTarefa(textoNovaTarefa)
 })
