@@ -39,50 +39,60 @@ function pegarUsuario(valor) {
 
 
 //função para criar uma nova tarefa
-const criarTarefa = (inputTarefa = novaTarefa) => {
+const criarNovaTarefa = (inputTarefa = novaTarefa) => {
 
     let tarefa = {
-        description: inputTarefa.innerText,
+        description: inputTarefa.nodeValue,
         completed: false
     };
 
-    let urlCriarTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
-    let novaTarefaJSON = JSON.stringify(tarefa);
+    const padraoVazio = /^$/;                                       // regexp para strings vazias
+    const testeRegexVazio = padraoVazio.test(tarefa.description);    // retorna true se o nome da tarefa entrar na regra do Regexp
 
-    console.log(novaTarefaJSON);
+    if (testeRegexVazio === true) {
+        console.log('A Tarefa não pode ser nome vazio.');
 
-    let endPoint = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'authorization': token
-        },
-        body: novaTarefaJSON
+        return alert(`A Tarefa não pode ser nome vazio.`)
+    } else {
+
+        let urlCriarTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
+        let novaTarefaJSON = JSON.stringify(tarefa);
+
+        console.log(novaTarefaJSON);
+
+        let endPoint = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': token
+            },
+            body: novaTarefaJSON
+        }
+
+        fetch(urlCriarTarefa, endPoint).then(response => {
+            if (response.status == 201) {
+                console.log(response)
+                return response.json()
+
+            } else {
+                console.log(response)
+                throw response.status
+            }
+
+        }).then(data => {
+            window.location = 'index.html'
+            return data.jwt
+
+        }).catch(error => {
+            if (error == 400) {
+                exibirErro.innerText = "Tarefa já existente"
+                exibirErroApi(exibirErro)
+            } else {
+                exibirErro.innerText = "Tentar novamente mais tarde"
+                exibirErroApi(exibirErro)
+            }
+        })
     }
-
-    fetch(urlCriarTarefa, endPoint).then(response => {
-        if (response.status == 201) {
-            console.log(response)
-            return response.json()
-
-        } else {
-            console.log(response)
-            throw response.status
-        }
-
-    }).then(data => {
-        window.location = 'index.html'
-        return data.jwt
-
-    }).catch(error => {
-        if (error == 400) {
-            exibirErro.innerText = "Tarefa já existente"
-            exibirErroApi(exibirErro)
-        } else {
-            exibirErro.innerText = "Tentar novamente mais tarde"
-            exibirErroApi(exibirErro)
-        }
-    })
 }
 
 //evento para criar a nova tarefa 
