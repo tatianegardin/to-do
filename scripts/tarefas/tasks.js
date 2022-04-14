@@ -3,7 +3,6 @@ let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = document.getElementById('novaTarefa');
 let btnTarefa = document.querySelector('.nova-tarefa button');
-let exibeErro = document.getElementByI('exibeErro');
 
 onload = function () {
     if (!token) {
@@ -81,16 +80,16 @@ const criarNovaTarefa = (inputTarefa = novaTarefa) => {
             }
 
         }).then(data => {
-            window.location = 'index.html'
+            window.location = 'tarefas.html'
             return data.jwt
 
         }).catch(error => {
             if (error == 400) {
-                exibirErro.innerText = "Tarefa já existente"
-                exibirErroApi(exibirErro)
+                console.log('Erro 400');
+                alert('Erro 400')
             } else {
-                exibirErro.innerText = "Tentar novamente mais tarde"
-                exibirErroApi(exibirErro)
+                console.log('Tentar novamente mais tarde');
+                alert('Tentar novamente mais tarde')
             }
         })
     }
@@ -100,5 +99,5 @@ const criarNovaTarefa = (inputTarefa = novaTarefa) => {
 
 btnTarefa.addEventListener('click', event => {
     event.preventDefault()
-    criarTarefa()
+    criarNovaTarefa()
 })
