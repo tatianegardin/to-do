@@ -39,15 +39,15 @@ function pegarUsuario(valor) {
 
 
 //função para criar uma nova tarefa
-const criarNovaTarefa = (inputTarefa = novaTarefa) => {
+const criarNovaTarefa = (entradaTarefa) => {
 
     let tarefa = {
-        description: inputTarefa.nodeValue,
+        description: entradaTarefa,
         completed: false
     };
 
     const padraoVazio = /^$/;                                       // regexp para strings vazias
-    const testeRegexVazio = padraoVazio.test(tarefa.description);    // retorna true se o nome da tarefa entrar na regra do Regexp
+    const testeRegexVazio = padraoVazio.test(tarefa.description);   // retorna true se o nome da tarefa entrar na regra do Regexp
 
     if (testeRegexVazio === true) {
         console.log('A Tarefa não pode ser nome vazio.');
@@ -99,5 +99,6 @@ const criarNovaTarefa = (inputTarefa = novaTarefa) => {
 
 btnTarefa.addEventListener('click', event => {
     event.preventDefault()
-    criarNovaTarefa()
+    let textoNovaTarefa = novaTarefa.innerHTML; // CORRIGIR A CAPTURA DO TEXTO DA TAREFA
+    criarNovaTarefa(textoNovaTarefa)
 })
