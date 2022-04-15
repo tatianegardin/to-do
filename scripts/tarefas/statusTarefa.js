@@ -26,7 +26,7 @@ function finalizarTarefa(id, token) {
                 console.log('tarefa não finalizada')
                 tarefaPendente;
             }
-            window.location. ();
+            window.location.reload();
         })
         .catch(error => console.log(error))
 
