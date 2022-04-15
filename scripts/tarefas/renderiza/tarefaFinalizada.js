@@ -7,7 +7,7 @@ function tarefaFinalizada(tarefa) {
     <div class="descricao">
     <p class="nome">${tarefa.description}</p>
     <div>
-        <button><i id="${tarefa.id}" class="fas fa-undo-alt change"></i></button>
+        <button><i id="${tarefa.id}" onclick = "returnStatusTarefa(${tarefa.id}, token)" class="fas fa-undo-alt change"></i></button>
         <button><i id="${tarefa.id}" onclick = "deletarTarefa(${tarefa.id}, token)" class="far fa-trash-alt"></i></button>
     </div>
     </div>
