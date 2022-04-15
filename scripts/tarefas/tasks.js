@@ -10,17 +10,12 @@ onload = function () {
     } else {
         pegarUsuario(token)
         listarTarefas(token)
-    } 
-
+    }
 }
 
-
-
-
 //função para listar as tarefas
-
 function listarTarefas(valor) {
-    let endPoin = {
+    let endPoint = {
         method: 'GET',
         headers: {
             authorization: valor
@@ -29,11 +24,15 @@ function listarTarefas(valor) {
 
     let url = 'https://ctd-todo-api.herokuapp.com/v1/tasks'
 
-    fetch(url, endPoin)
+    fetch(url, endPoint)
         .then(response => response.json())
         .then(data => {
-                console.log(data)
-            })
+            console.log(data)
+
+            for (const tarefa of data) {
+                tarefa.completed ? tarefaFinalizada(tarefa) : tarefaPendente(tarefa);
+            }
+        })
 }
 
 
