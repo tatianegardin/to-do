@@ -20,6 +20,6 @@ function pegarUsuario(valor) {
         .then(data => {
             nomeUsuario.innerHTML = `${data.firstName} ${data.lastName}`
         })
-        .catch(error => Swal.fire('Tente novamente mais tarde', '', 'error'))
+        .catch(error =>Swal.fire(`Erro ${error}`, 'Por favor, tente novamente mais tarde', 'error'))
 
 }
