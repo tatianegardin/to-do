@@ -9,7 +9,8 @@ onload = function () {
         location.href = 'index.html'
     } else {
         pegarUsuario(token)
-    }
+        listarTarefas(token)
+    } 
 
 }
 
@@ -36,6 +37,22 @@ function pegarUsuario(valor) {
 
 //função para listar as tarefas
 
+function listarTarefas(valor) {
+    let endPoin = {
+        method: 'GET',
+        headers: {
+            authorization: valor
+        }
+    }
+
+    let url = 'https://ctd-todo-api.herokuapp.com/v1/tasks'
+
+    fetch(url, endPoin)
+        .then(response => response.json())
+        .then(data => {
+                console.log(data)
+            })
+}
 
 
 //função para criar uma nova tarefa
