@@ -46,9 +46,9 @@ btnCriarConta.addEventListener('click', evento =>{
     campoRepetirSenhaNormalizado = retiraEspacosDeUmValor(campoRepetirSenha.value)
 
     //colocando campos em letra minúscula
-    campoNomeNormalizado = converteValorRecebidoParaMinusculo(campoNome.value)
-    campoApelidoNormalizado = converteValorRecebidoParaMinusculo(campoApelido.value)
-    campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value)
+    campoNomeNormalizado = converteValorRecebidoParaMinusculo(campoNomeNormalizado)
+    campoApelidoNormalizado = converteValorRecebidoParaMinusculo(campoApelidoNormalizado)
+    campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmailNormalizado)
     
     // atribuindo valores ao objeto 
     novoUsuario.firstName = campoNomeNormalizado
@@ -73,20 +73,19 @@ btnCriarConta.addEventListener('click', evento =>{
     fetch(urlEndPoint, endPoint)
 
     .then(response => {
-        if(response.status == 201 ){
-            console.log(response)
+        if(response.status == 201){
+            console.log(response.status)
             return response.json()
 
         }else{
-            console.log(response)
+            console.log(response.status)
             throw response.status
         }
     })
     .then(data => {
-        window.location = 'index.html'
-        return data.jwt
+        swal.fire('Usuário criado com sucesso!', '', 'success')
+        document.querySelector('.swal2-confirm').addEventListener('click', ()=> window.location.href = 'index.html')
     })
-
     .catch(error => {
         if(error == 400){
             exibirErro.innerText = "Usuário já registrado"
@@ -96,11 +95,6 @@ btnCriarConta.addEventListener('click', evento =>{
             exibirErroApi(exibirErro)
         }
     })
-
-     
-
-
-
 })
 
 
