@@ -14,7 +14,13 @@ onload = function () {
 }
 
 
+//evento para criar a nova tarefa 
 
+btnTarefa.addEventListener('click', event => {
+    event.preventDefault()
+    let textoNovaTarefa = novaTarefa.value; // CORRIGIR A CAPTURA DO TEXTO DA TAREFA
+    criarNovaTarefa(textoNovaTarefa)
+})
 
 
 
