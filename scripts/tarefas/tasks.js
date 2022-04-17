@@ -3,6 +3,7 @@ let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = pegarElementoID('novaTarefa');
 let btnTarefa = document.querySelector('.nova-tarefa button');
+let btnSessao = pegarElementoID('closeApp');
 
 onload = function () {
     if (!token) {
@@ -22,7 +23,12 @@ btnTarefa.addEventListener('click', event => {
     criarNovaTarefa(textoNovaTarefa)
 })
 
+//evento para finalizar sessão
 
+btnSessao.addEventListener('click', e =>{
+    e.preventDefault()
+    finalizarSessao()
+})
 
 
 
