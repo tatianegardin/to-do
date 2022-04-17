@@ -39,7 +39,7 @@ const criarNovaTarefa = (entradaTarefa) => {
             }
 
         }).then(data => {
-            window.location = 'tarefas.html'
+            tarefaPendente(data)
             return data.jwt
 
         }).catch(error => {
