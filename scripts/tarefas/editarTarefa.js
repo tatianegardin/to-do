@@ -6,7 +6,7 @@ btn.addEventListener('click', e=>{
     requisicaoAPI(input.id, token) 
 })
 
-function editarTarefa(id, token, descricao){
+function editarTarefa(id, descricao){
 
     let input = document.querySelector('.novaTarefa')
     input.value = descricao
@@ -54,7 +54,7 @@ function requisicaoAPI(id, token){
         }
 
     }).then(data => {
-        location.reload()
+        window.location.reload()
         limparInput()
        
 
@@ -67,10 +67,11 @@ function requisicaoAPI(id, token){
             alert('Tente novamente mais tarde')
         }
     })
+    
 }
 
 function limparInput(){
-    let input = document.querySelector('#novaTarefa')
+    let input = document.querySelector('.novaTarefa')
     input.value = ''
 }
 
