@@ -2,9 +2,10 @@
 let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = document.querySelector('.novaTarefa');
-let btnTarefa = document.querySelector('#criarTarefa');
+let btnTarefa = pegarElementoID('criarTarefa');
 let btnSessao = pegarElementoID('closeApp');
 
+// evento que executa uma função quando a página carregar
 onload = function () {
     if (!token) {
         location.href = 'index.html'
@@ -26,7 +27,7 @@ btnTarefa.addEventListener('click', event => {
 
 //evento para finalizar sessão
 
-btnSessao.addEventListener('click', e =>{
+btnSessao.addEventListener('click', e => {
     e.preventDefault()
     finalizarSessao()
 })
