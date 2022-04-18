@@ -3,11 +3,11 @@ let btn = document.querySelector('#alterar')
 btn.addEventListener('click', e=>{
     let input = document.querySelector('.novaTarefa')
     e.preventDefault()
-    executar(input.id, token) 
+    requisicaoAPI(input.id, token) 
 })
 
 function editarTarefa(id, token, descricao){
-    let btn = document.querySelector('#alterar')
+
     let input = document.querySelector('.novaTarefa')
     input.value = descricao
     input.id = id
@@ -20,18 +20,9 @@ function editarTarefa(id, token, descricao){
 }
 
 
-
-function executar(id, token){
-    requisicaoAPI(id, token)
-    console.log(id)
-}
-
- 
-
 function requisicaoAPI(id, token){
 
     let input = document.querySelector('.novaTarefa')
-    console.log(input)
 
     let editandoTarefa= {
         description: input.value,	
