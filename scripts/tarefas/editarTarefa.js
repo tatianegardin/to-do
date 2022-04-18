@@ -1,25 +1,36 @@
-function editarTarefa(id, token, descricao){
+let btn = document.querySelector('#alterar')
 
-    let input = document.querySelector('#novaTarefa')
+btn.addEventListener('click', e=>{
+    let input = document.querySelector('.novaTarefa')
+    e.preventDefault()
+    executar(input.id, token) 
+})
+
+function editarTarefa(id, token, descricao){
+    let btn = document.querySelector('#alterar')
+    let input = document.querySelector('.novaTarefa')
     input.value = descricao
+    input.id = id
 
     let btnCriar = document.querySelector('#criarTarefa')
     btnCriar.style.display = 'none'
 
-    let btn = document.querySelector('#alterar')
     btn.style.display = 'inline'
-
-    btn.addEventListener('click', e=>{
-        e.preventDefault()
-        requisicaoAPI(id, token)
-    })
 
 }
 
 
+
+function executar(id, token){
+    requisicaoAPI(id, token)
+    console.log(id)
+}
+
+ 
+
 function requisicaoAPI(id, token){
 
-    let input = document.querySelector('#novaTarefa')
+    let input = document.querySelector('.novaTarefa')
     console.log(input)
 
     let editandoTarefa= {

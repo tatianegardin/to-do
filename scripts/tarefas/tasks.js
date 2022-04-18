@@ -1,7 +1,7 @@
 // variaveis
 let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
-let novaTarefa = pegarElementoID('novaTarefa');
+let novaTarefa = document.querySelector('.novaTarefa');
 let btnTarefa = document.querySelector('#criarTarefa');
 let btnSessao = pegarElementoID('closeApp');
 
