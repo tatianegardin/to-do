@@ -242,3 +242,17 @@ a {
   0%{ opacity: 0.79;}
   100%{ opacity: 0.8;}
 }
+
+.botoes p, button{
+  display: inline;
+}
+
+.botoes button {
+  color:rgb(134, 134, 134);
+  margin: 0 0.5rem  ;
+  background-color: rgba(240, 248, 255, 0);
+}
+
+#alterar{
+  color:chartreuse;
+}

@@ -28,6 +28,7 @@
   <script defer src="scripts/tarefas/deletarTarefa.js"></script>
   <script defer src="scripts/tarefas/getUsuario.js"></script>
   <script defer src="scripts/tarefas/renderiza/tarefaFinalizada.js"></script>
+  <script defer src="scripts/tarefas/editarTarefa.js"></script>
   <script defer src="scripts/tarefas/renderiza/tarefaPendente.js"></script>
   <script defer src="scripts/tarefas/criarTarefa.js"></script>
   <script defer src="scripts/tarefas/listarTarefas.js"></script>
@@ -56,10 +57,11 @@
 
   <form class="nova-tarefa">
     <div class="not-done "></div>
-    <input id="novaTarefa" type="text" placeholder="Nova tarefa">
+    <input id="novaTarefa" type="text" placeholder="Nova tarefa"> 
     <button type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
+    <button type="button" id="alterar" hidden> alterar</button>
   </form>
 
 
