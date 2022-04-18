@@ -1,30 +1,20 @@
 function editarTarefa(id, token, descricao){
 
-    console.log(id)
-    console.log(token)
-    console.log(descricao)
-
     let input = document.querySelector('#novaTarefa')
     input.value = descricao
 
-
+    let btnCriar = document.querySelector('#criarTarefa')
+    btnCriar.style.display = 'none'
 
     let btn = document.querySelector('#alterar')
+    btn.style.display = 'inline'
+
     btn.addEventListener('click', e=>{
         e.preventDefault()
         requisicaoAPI(id, token)
     })
 
 }
-
-
-// function aparecerCampo() {
-//     let btn = document.querySelector('#alterar')
-//     btn.removeAttribute("hidden");    
-
-//     // let botaoCriar = document.querySelector('.nova-tarefa button')
-//     // botaoCriar.setAttribute("hidden")
-// }
 
 
 function requisicaoAPI(id, token){

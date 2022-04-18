@@ -253,6 +253,11 @@ a {
   background-color: rgba(240, 248, 255, 0);
 }
 
-#alterar{
-  color:chartreuse;
+#alterar {
+  color:rgb(67, 67, 67);
+  display: none;
+}
+
+#alterar i {
+  font-size: 1.5rem;
 }

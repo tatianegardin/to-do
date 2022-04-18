@@ -2,13 +2,14 @@
 let nomeUsuario = document.querySelector('.user-info p');
 let token = sessionStorage.getItem('jwt');
 let novaTarefa = pegarElementoID('novaTarefa');
-let btnTarefa = document.querySelector('.nova-tarefa button');
+let btnTarefa = document.querySelector('#criarTarefa');
 let btnSessao = pegarElementoID('closeApp');
 
 onload = function () {
     if (!token) {
         location.href = 'index.html'
     } else {
+        limparInput()
         pegarUsuario(token)
         listarTarefas(token)
     }
