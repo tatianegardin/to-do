@@ -21,7 +21,7 @@ onload = function () {
 
 btnTarefa.addEventListener('click', event => {
     event.preventDefault()
-    let textoNovaTarefa = novaTarefa.value; // CORRIGIR A CAPTURA DO TEXTO DA TAREFA
+    let textoNovaTarefa = novaTarefa.value;     // Captura o nome da tarefa digitada no input (captura dinâmica)
     criarNovaTarefa(textoNovaTarefa)
 })
 
