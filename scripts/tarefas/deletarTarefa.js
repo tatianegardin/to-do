@@ -23,7 +23,7 @@ function chamadaAPI(id, token){
 function deletarTarefa(id, token){
     Swal.fire({
         title: 'Você deseja deletar essa tarefa?',
-        text: "Essa ação não poderá ser revertida",
+        text: "Essa ação não poderá ser revertida!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

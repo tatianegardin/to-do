@@ -35,16 +35,11 @@ function retornarEnvio(){
     btn.style.display = 'none'
 }
 
-let btnVoltar = document.querySelector('.not-done')
 
+let btnVoltar = document.querySelector('.not-done')
 btnVoltar.addEventListener('click', e=>{
     retornarEnvio()
 })
-let tarefas = document.querySelector('.tarefas-pendentes')
-tarefas.addEventListener('click', e=>{
-    console.log('clicou')
-})
-
 
 function requisicaoAPI(id, token){
 
@@ -71,27 +66,18 @@ function requisicaoAPI(id, token){
     fetch(urleditarTarefa, endpoint)
     .then(response => {
         if (response.status == 200) {
-            console.log("Tarefa editada com sucesso")
             return response.json()
 
         } else {
-            console.log(response)
             throw response.status
         }
 
     }).then(data => {
         window.location.reload()
         limparInput()
-       
-
+        
     }).catch(error => {
-        if (error == 400) {
-            console.log('Erro 400');
-            alert('Erro 400')
-        } else {
-            console.log('Tente novamente mais tarde');
-            alert('Tente novamente mais tarde')
-        }
+        Swal.fire("Ocorreu um erro inesperado.", "Por favor, tente novamente mais tarde!", 'warning')
     })
     
 }

@@ -74,13 +74,10 @@ btnCriarConta.addEventListener('click', evento =>{
     fetch(urlEndPoint, endPoint)
 
     .then(response => {
-        if(response.status == 201){
-            console.log(response.status)
-            
+        if(response.status == 201){      
             return response.json()
 
         }else{
-            console.log(response.status)
             throw response.status
         }
     })

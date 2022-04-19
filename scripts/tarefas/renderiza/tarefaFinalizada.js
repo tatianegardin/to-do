@@ -1,6 +1,7 @@
 function tarefaFinalizada(tarefa) {
     let ul = document.querySelector('.tarefas-terminadas')
     let li = document.createElement('li')
+    
     li.classList.add('tarefa')
     li.innerHTML = `
     <div class="done"></div>

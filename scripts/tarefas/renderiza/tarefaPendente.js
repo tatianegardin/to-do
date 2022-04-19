@@ -1,11 +1,11 @@
 function tarefaPendente(tarefa) {
 
-    let dataConvertida = dayjs(tarefa.createdAt).format('DD/MM/YYYY')
+    let dataConvertida = dayjs(tarefa.createdAt).format('DD/MM/YYYY HH:mm')
     let ul = document.querySelector('.tarefas-pendentes')
     let li = document.createElement('li')
-    li.classList.add('tarefa')
-
     let tarefaAlterada = `'${tarefa.description}'`
+
+    li.classList.add('tarefa')
     li.innerHTML = `
     <div class="not-done" id="${tarefa.id}" onclick="finalizarTarefa(${tarefa.id}, token)"><img hidden src="../../assets/icons8-selecionado.gif" class="v-check ${tarefa.id}" allowFullScreen></img></div>
     <div class="descricao">

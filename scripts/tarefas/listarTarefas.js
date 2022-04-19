@@ -17,7 +17,7 @@ function listarTarefas(valor) {
             }
         })
         .then(data => {
-            
+                       
             removerSkeleton('.tarefas-pendentes')
             removerSkeleton('.tarefas-terminadas')
 

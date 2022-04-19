@@ -63,9 +63,11 @@ botaoAcessar.addEventListener('click', function(evento){
         })
         .catch(error => {
             if(error == 404 || error == 400){
-                exibeErro.innerText = "Usuário ou senha incorreto."
+                ocultarSpinner()
+                exibeErro.innerText = "Usuário/senha incorretos."
                 exibirErroApi(exibeErro)
             }else{
+                ocultarSpinner()
                 exibeErro.innerText = "Tente novamente mais tarde."
                 exibirErroApi(exibeErro)
             }

@@ -20,12 +20,10 @@ function finalizarTarefa(id, token) {
         .then(data => {
             console.log(data);
             if (data.completed == true) {
-                console.log('tarefa finalizada')
                 let iconeV = document.querySelector(`.v-check`);
                 iconeV.removeAttribute('hidden');
                 tarefaFinalizada;
             } else {
-                console.log('tarefa não finalizada')
                 tarefaPendente;
             }
             window.location.reload();
@@ -56,12 +54,9 @@ function returnStatusTarefa(id, token) {
     fetch(urlFinalizarTarefa, endpoint)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data.completed == false) {
-                console.log('tarefa não finalizada')
                 tarefaPendente;
             } else {
-                console.log('tarefa finalizada')
                 tarefaFinalizada;
 
             }
