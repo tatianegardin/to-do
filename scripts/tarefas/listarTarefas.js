@@ -1,5 +1,8 @@
 function listarTarefas(valor) {
+    //carrega um fixo de skeleton
     renderizarSkeletons(5, ".tarefas-pendentes")
+
+
     let endPoint = {
         method: 'GET',
         headers: {
@@ -28,14 +31,20 @@ function listarTarefas(valor) {
                     pendente ++
                 }
             }
+            // remove o valor fixo do skeleton
             removerSkeleton('.tarefas-pendentes')
+
+            //adiciona o valor do skeleton de acordo com o número de tarefas recebido pela api
             renderizarSkeletons(pendente, ".tarefas-pendentes")
             renderizarSkeletons(concluida, ".tarefas-terminadas")
                         
-            
+            //setando um tempo para poder remover os skeleton e renderizar as tarefas
             setTimeout(()=>{
+                //remova os skeleton para poder renderizar as tarefas
                 removerSkeleton('.tarefas-pendentes')
                 removerSkeleton('.tarefas-terminadas')
+
+                //renderiza as tarefas
                 for (const tarefa of data) {
                     tarefa.completed ? tarefaFinalizada(tarefa) : tarefaPendente(tarefa);
                 }
