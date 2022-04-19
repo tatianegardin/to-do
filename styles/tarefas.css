@@ -279,3 +279,8 @@ button {
   width: 68%;
   z-index: -1;
 }
+
+.cancel-edicao{
+  font-size: 2rem;
+  color: var(--secondary);
+}

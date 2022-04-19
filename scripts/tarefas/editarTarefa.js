@@ -8,7 +8,7 @@ btn.addEventListener('click', e=>{
 
 function editarTarefa(id, descricao){
     let div = document.querySelector('.not-done')
-    div.style.border = '2px solid var(--secondary)'
+    div.innerHTML = '<i class="fas fa-times-circle cancel-edicao"></i>'
 
     let input = document.querySelector('.novaTarefa')
     input.value = descricao
@@ -18,10 +18,28 @@ function editarTarefa(id, descricao){
     btnCriar.style.display = 'none'
 
     btn.style.display = 'inline'
-
 }
 
+function retornarEnvio(){
+    let div = document.querySelector('.not-done')
+    div.innerHTML = ''
+    
+    let input = document.querySelector('.novaTarefa')
+    input.value = ''
+    input.id = 'novaTarefa'
+    
+    
+    let btnCriar = document.querySelector('#criarTarefa')
+    btnCriar.style.display = 'inline'
+    
+    btn.style.display = 'none'
+}
 
+let btnVoltar = document.querySelector('.not-done')
+
+btnVoltar.addEventListener('click', e=>{
+    retornarEnvio()
+})
 let tarefas = document.querySelector('.tarefas-pendentes')
 tarefas.addEventListener('click', e=>{
     console.log('clicou')
