@@ -74,7 +74,9 @@ function renderizarSkeletons(quantidade, conteiner) {
     });
 }
 
-   renderizarSkeletons(5, ".tarefas-pendentes")
+   renderizarSkeletons(3, ".tarefas-pendentes")
+   renderizarSkeletons(3, ".tarefas-terminadas")
+
 
 /*
  Esta função receberá o nome do conteiner dentro do qual

@@ -15,7 +15,8 @@ onload = function () {
         
         limparInput()
         pegarUsuario(token)
-        listarTarefas(token)
+        setTimeout(() => listarTarefas(token) , 600);
+        
     }
 }
 
