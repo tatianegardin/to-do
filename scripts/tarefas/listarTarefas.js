@@ -1,4 +1,5 @@
 function listarTarefas(valor) {
+    renderizarSkeletons(5, ".tarefas-pendentes")
     let endPoint = {
         method: 'GET',
         headers: {
@@ -17,13 +18,32 @@ function listarTarefas(valor) {
             }
         })
         .then(data => {
-                       
-            removerSkeleton('.tarefas-pendentes')
-            removerSkeleton('.tarefas-terminadas')
 
-            for (const tarefa of data) {
-                tarefa.completed ? tarefaFinalizada(tarefa) : tarefaPendente(tarefa);
+            let concluida = 0
+            let pendente = 0
+            for(tarefa of data){
+                if(tarefa.completed){
+                    concluida ++
+                }else{
+                    pendente ++
+                }
             }
+            removerSkeleton('.tarefas-pendentes')
+            renderizarSkeletons(pendente, ".tarefas-pendentes")
+            renderizarSkeletons(concluida, ".tarefas-terminadas")
+                        
+            
+            setTimeout(()=>{
+                removerSkeleton('.tarefas-pendentes')
+                removerSkeleton('.tarefas-terminadas')
+                for (const tarefa of data) {
+                    tarefa.completed ? tarefaFinalizada(tarefa) : tarefaPendente(tarefa);
+                }
+            }, 600) 
+            
+
         })
-        .catch(error =>Swal.fire(`Erro ${error}`, 'Por favor, tente novamente mais tarde', 'error'))
+        .catch(error =>{
+            Swal.fire(`Erro ${error}`, 'Por favor, tente novamente mais tarde', 'error')
+        })
 }
