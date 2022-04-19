@@ -7,8 +7,8 @@ function tarefaPendente(tarefa) {
 
     li.classList.add('tarefa')
     li.innerHTML = `
-    <div class="not-done" id="${tarefa.id}" onclick="finalizarTarefa(${tarefa.id}, token)"><img hidden src="../../assets/icons8-selecionado.gif" class="v-check ${tarefa.id}" allowFullScreen></img></div>
-    <div class="descricao">
+    <div class="not-done check${tarefa.id}" id="${tarefa.id}" onclick="finalizarTarefa(${tarefa.id}, token)"><img hidden src="../../assets/icons8-selecionado.gif" class="v-check ${tarefa.id}" allowFullScreen></img></div>
+    <div class="descricao descricao${tarefa.id}">
         <p class="nome">${tarefa.description}</p>
         <div class='botoes' >
             <button  onclick="editarTarefa(${tarefa.id}, ${tarefaAlterada})"><i class="fas fa-marker"></i></button>

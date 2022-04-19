@@ -7,8 +7,26 @@ btn.addEventListener('click', e=>{
 })
 
 function editarTarefa(id, descricao){
+    let todasTarefas = document.querySelectorAll('.not-done')
+    for(tarefa of todasTarefas){
+        tarefa.style.backgroundColor = ''
+    }
+    
+    let todosZoom = document.querySelectorAll(`.descricao`)
+    for(valor of todosZoom){
+        valor.style.transform = 'scale(1)'
+    }
+
+    let divTarefa = document.querySelector(`.check${id}`)
+    divTarefa.style.backgroundColor = 'var(--secondary)'
+
     let div = document.querySelector('.not-done')
-    div.innerHTML = '<i class="fas fa-times-circle cancel-edicao"></i>'
+    div.innerHTML = '<i class="far fa-times-circle cancel-edicao"></i>'
+    div.style.backgroundColor = 'white'
+
+    let divZoom = document.querySelector(`.descricao${id}`)
+
+    divZoom.style.transform = 'scale(1.02)'
 
     let input = document.querySelector('.novaTarefa')
     input.value = descricao
@@ -17,16 +35,24 @@ function editarTarefa(id, descricao){
     let btnCriar = document.querySelector('#criarTarefa')
     btnCriar.style.display = 'none'
 
+
     btn.style.display = 'inline'
 }
 
 function retornarEnvio(){
+    
     let div = document.querySelector('.not-done')
     div.innerHTML = ''
+    div.style.backgroundColor = ''
+
     
     let input = document.querySelector('.novaTarefa')
+    let pegarId = input.id
     input.value = ''
     input.id = 'novaTarefa'
+
+    let divTarefa = document.getElementById(pegarId)
+    divTarefa.style.backgroundColor = ''
     
     
     let btnCriar = document.querySelector('#criarTarefa')
