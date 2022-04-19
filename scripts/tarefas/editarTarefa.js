@@ -53,6 +53,9 @@ function retornarEnvio(){
 
     let divTarefa = document.getElementById(pegarId)
     divTarefa.style.backgroundColor = ''
+
+    let divZoom = document.querySelector(`.descricao${pegarId}`)
+    divZoom.style.transform = 'scale(1)'
     
     
     let btnCriar = document.querySelector('#criarTarefa')
