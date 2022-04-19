@@ -1,10 +1,10 @@
 function finalizarTarefa(id, token) {
     let descricao = document.querySelector('.nome').value;
-    let statusTarefa= {
-        description: descricao,	
-        completed: true    
+    let statusTarefa = {
+        description: descricao,
+        completed: true
     }
-        let statusTarefaJson = JSON.stringify(statusTarefa)
+    let statusTarefaJson = JSON.stringify(statusTarefa)
 
     let urlFinalizarTarefa = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
     let endpoint = {
@@ -21,6 +21,8 @@ function finalizarTarefa(id, token) {
             console.log(data);
             if (data.completed == true) {
                 console.log('tarefa finalizada')
+                let iconeV = document.querySelector(`.v-check`);
+                iconeV.removeAttribute('hidden');
                 tarefaFinalizada;
             } else {
                 console.log('tarefa não finalizada')
@@ -36,11 +38,11 @@ function finalizarTarefa(id, token) {
 
 function returnStatusTarefa(id, token) {
     let descricao = document.querySelector('.nome').value;
-    let statusTarefa= {
-        description: descricao,	
-        completed: false    
+    let statusTarefa = {
+        description: descricao,
+        completed: false
     }
-        let statusTarefaJson = JSON.stringify(statusTarefa)
+    let statusTarefaJson = JSON.stringify(statusTarefa)
 
     let urlFinalizarTarefa = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
     let endpoint = {
@@ -61,8 +63,8 @@ function returnStatusTarefa(id, token) {
             } else {
                 console.log('tarefa finalizada')
                 tarefaFinalizada;
-                
-            } 
+
+            }
             window.location.reload();
         })
         .catch(error => console.log(error))

@@ -7,7 +7,7 @@ function tarefaPendente(tarefa) {
 
     let tarefaAlterada = `'${tarefa.description}'`
     li.innerHTML = `
-    <div class="not-done" id="${tarefa.id}" onclick="finalizarTarefa(${tarefa.id}, token) "></div>
+    <div class="not-done" id="${tarefa.id}" onclick="finalizarTarefa(${tarefa.id}, token)"><img hidden src="../../assets/icons8-selecionado.gif" class="v-check ${tarefa.id}" allowFullScreen></img></div>
     <div class="descricao">
         <p class="nome">${tarefa.description}</p>
         <div class='botoes' >
