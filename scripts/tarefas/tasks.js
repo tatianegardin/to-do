@@ -12,7 +12,7 @@ onload = function () {
     if (!token) {
         location.href = 'index.html'
     } else {
-        
+        animacao(token)
         limparInput()
         pegarUsuario(token)
         setTimeout(() => listarTarefas(token) , 600);

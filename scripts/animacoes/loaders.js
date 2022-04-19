@@ -74,8 +74,7 @@ function renderizarSkeletons(quantidade, conteiner) {
     });
 }
 
-   renderizarSkeletons(3, ".tarefas-pendentes")
-   renderizarSkeletons(3, ".tarefas-terminadas")
+
 
 
 /*
@@ -95,6 +94,43 @@ function removerSkeleton(conteiner) {
     // do referido conteiner
     skeletons.forEach((skeleton) => conteinerTarefas.removeChild(skeleton));
 
+}
+
+
+function animacao(valor) {
+  let endPoint = {
+      method: 'GET',
+      headers: {
+          authorization: valor
+      }
+  }
+
+  let url = 'https://ctd-todo-api.herokuapp.com/v1/tasks'
+
+  fetch(url, endPoint)
+      .then(response =>{
+          if(response.status == 200){
+              return  response.json()
+          }else{
+              throw response.status
+          }
+      })
+      .then(data => {
+        let concluida = 0
+        let pendente = 0
+        for(tarefa of data){
+          if(tarefa.completed){
+            concluida ++
+          }else{
+            pendente ++
+          }
+        }
+          renderizarSkeletons(pendente, ".tarefas-pendentes")
+          renderizarSkeletons(concluida, ".tarefas-terminadas")
+        
+        
+      })
+      .catch(error =>Swal.fire(`Erro ${error}`, 'Por favor, tente novamente mais tarde', 'error'))
 }
    
 
