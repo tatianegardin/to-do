@@ -7,6 +7,8 @@ btn.addEventListener('click', e=>{
 })
 
 function editarTarefa(id, descricao){
+    let div = document.querySelector('.not-done')
+    div.style.border = '2px solid var(--secondary)'
 
     let input = document.querySelector('.novaTarefa')
     input.value = descricao
@@ -18,6 +20,12 @@ function editarTarefa(id, descricao){
     btn.style.display = 'inline'
 
 }
+
+
+let tarefas = document.querySelector('.tarefas-pendentes')
+tarefas.addEventListener('click', e=>{
+    console.log('clicou')
+})
 
 
 function requisicaoAPI(id, token){

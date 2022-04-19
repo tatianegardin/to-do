@@ -7,12 +7,16 @@ let btnSessao = pegarElementoID('closeApp');
 
 // evento que executa uma função quando a página carregar
 onload = function () {
+
+
     if (!token) {
         location.href = 'index.html'
     } else {
+        animacao(token)
         limparInput()
         pegarUsuario(token)
-        listarTarefas(token)
+        setTimeout(() => listarTarefas(token) , 600);
+        
     }
 }
 
@@ -23,6 +27,7 @@ btnTarefa.addEventListener('click', event => {
     event.preventDefault()
     let textoNovaTarefa = novaTarefa.value;     // Captura o nome da tarefa digitada no input (captura dinâmica)
     criarNovaTarefa(textoNovaTarefa)
+    limparInput()
 })
 
 //evento para finalizar sessão

@@ -36,6 +36,7 @@ let novoUsuario = {
     }
 
 btnCriarConta.addEventListener('click', evento =>{
+    mostrarSpinner()
     evento.preventDefault()
     if(liberaBotao())
     //retirando espaços dos campos
@@ -75,6 +76,7 @@ btnCriarConta.addEventListener('click', evento =>{
     .then(response => {
         if(response.status == 201){
             console.log(response.status)
+            
             return response.json()
 
         }else{
@@ -83,10 +85,13 @@ btnCriarConta.addEventListener('click', evento =>{
         }
     })
     .then(data => {
-        swal.fire('Usuário criado com sucesso!', '', 'success')
-        document.querySelector('.swal2-confirm').addEventListener('click', ()=> window.location.href = 'index.html')
+        ocultarSpinner()
+        window.location.href = 'index.html'
+        // swal.fire('Usuário criado com sucesso!', '', 'success')
+        // document.querySelector('.swal2-confirm').addEventListener('click', ()=> window.location.href = 'index.html')
     })
     .catch(error => {
+        ocultarSpinner()
         if(error == 400){
             exibirErro.innerText = "Usuário já registrado"
             exibirErroApi(exibirErro)
