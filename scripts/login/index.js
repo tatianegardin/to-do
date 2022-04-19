@@ -20,6 +20,7 @@ const usuarioObjeto = {
 validacaoTelaDeLogin()
 
 botaoAcessar.addEventListener('click', function(evento){
+    mostrarSpinner()
 
     if (validacaoTelaDeLogin()) {
         evento.preventDefault()
@@ -58,6 +59,7 @@ botaoAcessar.addEventListener('click', function(evento){
         .then(data => data.jwt)
         .then(data => {
             loginOk(data)
+            ocultarSpinner()
         })
         .catch(error => {
             if(error == 404 || error == 400){

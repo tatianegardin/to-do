@@ -17,7 +17,7 @@ function listarTarefas(valor) {
             }
         })
         .then(data => {
-            console.log(data)
+            removerSkeleton('.tarefas-pendentes')
 
             for (const tarefa of data) {
                 tarefa.completed ? tarefaFinalizada(tarefa) : tarefaPendente(tarefa);
